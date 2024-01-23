@@ -11,42 +11,49 @@ import Help from "./Component/Pannel/Help/Help";
 import Faq from "./Component/Pannel/Faq/Faq";
 import { Content, Header } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
+import AppFooter from "./Component/Footer/Footer";
 
 function App() {
   let navigate = useNavigate();
 
+
+  const menuItem = [
+    {
+      label: "Home",
+      key: "home",
+      children: [
+        {
+          label: "Dashboard",
+          key: "dashboard",
+          onClick: () => navigate("dashboard"),
+        },
+        {
+          label: "Faq",
+          key: "faq",
+          onClick: () => navigate("faq"),
+        },
+      ],
+    },
+    {
+      label: "Product List",
+      key: "product_list",
+      onClick: () => navigate("productlist"),
+    },
+  ]
+
   return (
     <Layout className="container">
-      <Header style={{ backgroundColor: "white" }}>
-        <div className="brand">Ounce</div>
+      <Header style={{ padding: 0, background: '#333' }} className='app-header'>
+        Testing
+        <col>
+
+        </col>
       </Header>
       <Layout>
-        <Sider theme="light">
+        <Sider theme="light" trigger={null} collapsible width={260} className='app-menu'>
           <Menu
             mode="inline"
-            items={[
-              {
-                label: "Home",
-                key: "home",
-                children: [
-                  {
-                    label: "Dashboard",
-                    key: "dashboard",
-                    onClick: () => navigate("dashboard"),
-                  },
-                  {
-                    label: "Faq",
-                    key: "faq",
-                    onClick: () => navigate("faq"),
-                  },
-                ],
-              },
-              {
-                label: "Product List",
-                key: "product_list",
-                onClick: () => navigate("productlist"),
-              },
-            ]}
+            items={menuItem}
           />
         </Sider>
         <Content>
@@ -57,6 +64,7 @@ function App() {
           </Routes>
         </Content>
       </Layout>
+      <AppFooter />
     </Layout>
   );
 }
